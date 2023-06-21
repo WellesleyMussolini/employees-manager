@@ -21,12 +21,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const startServer = async () => {
-    const protocol = process.env.PROTOCOL || "http";
-    const address = ip.address();
-    const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const startServer = () => {
+    return new Promise((resolve, reject) => {
+        const protocol = process.env.PROTOCOL || "http";
+        const address = ip.address();
+        const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
-    await new Promise((resolve, reject) => {
         app.listen({
             host: '0.0.0.0',
             port: port,
@@ -39,11 +39,6 @@ const startServer = async () => {
             }
         });
     });
-
-    console.log("Compiled successfully!");
-    console.log("You can now view your app in the browser.");
-    console.log(`Local:            "http://localhost:${port}"`);
-    console.log(`On Your Network:  "${protocol}://${address}:${port}"`);
 };
 
 startServer().catch((error) => {
