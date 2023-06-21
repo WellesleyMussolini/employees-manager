@@ -7,7 +7,7 @@ export const scheduleController = {
       const schedules = await Schedule.find();
       response.status(200).json(schedules);
     } catch (error) {
-      response.status(500).json({ error: 'Failed to fetch schedules' });
+      response.status(500).json({ error: 'Failed to fetch schedules: ' + error });
     }
   },
 
