@@ -41,6 +41,4 @@ const startServer = () => {
     });
 };
 
-startServer().catch((error) => {
-    console.error("Failed to start server:", error);
-});
+startServer().catch((error) => console.error("Failed to start server:", error));
