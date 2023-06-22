@@ -1,4 +1,3 @@
-// controllers/schedule.controller.js
 import Schedule from '../schema/schedule.schema.js';
 
 export const scheduleController = {
@@ -7,7 +6,7 @@ export const scheduleController = {
             const schedules = await Schedule.find();
             response.status(200).json(schedules);
         } catch (error) {
-            response.status(500).json({ error: 'Failed to fetch schedules' + error });
+            response.status(500).json({ error: 'Failed to fetch schedules' });
         }
     },
 
@@ -67,6 +66,14 @@ export const scheduleController = {
             response.status(200).json(schedule);
         } catch (error) {
             response.status(500).json({ error: 'Failed to delete schedule' });
+        }
+    },
+    deleteAll: async (request, response) => {
+        try {
+            await Schedule.deleteMany({});
+            response.status(200).json({ message: 'All schedules deleted' });
+        } catch (error) {
+            response.status(500).json({ error: 'Failed to delete all schedules' });
         }
     },
 };
